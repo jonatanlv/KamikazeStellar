@@ -3,18 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Translations
-*.mo
-*.pot
-
 # pyenv
 .python-version
-
-# pipenv
 
 # Environments
 venv/
