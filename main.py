@@ -4,6 +4,7 @@ import pygame
 import random
 from settings import *
 from sprites import *
+from enemy import *
 
 class Game:
     def __init__(self):
@@ -19,7 +20,9 @@ class Game:
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
         self.player = Player()
-        self.all_sprites.add(self.player)
+        self.enemy1 = Enemy()
+        self.enemy2 = Enemy()
+        self.all_sprites.add(self.player, self.enemy1, self.enemy2)
 
     def run(self):
         #bucle del juego
@@ -32,7 +35,11 @@ class Game:
 
     def update(self):
         #actualización del bucle del juego
-        self.all_sprites.update()
+        #self.player.pos.x, self.player.pos.y
+        self.enemy1.update(player_position=self.player.pos)
+        self.enemy2.update(player_position=self.player.pos)
+        self.player.update()
+        #self.all_sprites.update(player_position=self.player.pos)
 
 
     def events(self):

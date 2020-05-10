@@ -22,3 +22,8 @@ GRAY2 = (131, 145, 146)
 
 ACCELERATION = 0.6
 VELMAX = 15
+
+#### Parámetros del enemigo ####
+
+VELMAXENEMY = 10
+SIZE_ENEMY = 10
