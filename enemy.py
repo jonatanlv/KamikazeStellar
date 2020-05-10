@@ -17,13 +17,13 @@ class Enemy(pygame.sprite.Sprite):
         self.player_pos = vec(0, 0)
         self.vel = vec(0, 0)
         self.direction = vec(0, 0)
-
+        self.coef_vel = random.uniform(VELMINENEMY, VELMAXENEMY)
 
     def update(self, player_position):
         self.player_pos = player_position
         self.direction = self.player_pos - self.pos
         self.vel = self.direction/self.direction.magnitude()
-        self.pos += VELMAXENEMY * self.vel
+        self.pos +=  self.coef_vel * self.vel
 
         if self.pos.x > WIDTH:
             self.pos.x = 0

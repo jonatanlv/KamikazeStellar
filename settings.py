@@ -25,5 +25,6 @@ VELMAX = 15
 
 #### Parámetros del enemigo ####
 
-VELMAXENEMY = 10
-SIZE_ENEMY = 10
+VELMINENEMY = 2
+VELMAXENEMY = 8
+SIZE_ENEMY = 12
