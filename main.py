@@ -1,5 +1,5 @@
 # Importamos librerias
-# comentario
+
 import pygame
 import random
 from settings import *
