@@ -4,7 +4,8 @@ import pygame
 import random
 from settings import *
 from sprites import *
-from enemy import *
+from enemy_hunter import *
+from enemy_chaser import *
 
 class Game:
     def __init__(self):
@@ -12,7 +13,7 @@ class Game:
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption(NAME)
+        pygame.display.set_caption(GAME_NAME)
         self.clock = pygame.time.Clock()
         self.running = True
 
@@ -20,9 +21,9 @@ class Game:
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
         self.player = Player()
-        self.enemy1 = Enemy()
-        self.enemy2 = Enemy()
-        self.all_sprites.add(self.player, self.enemy1, self.enemy2)
+        self.hunter = Hunter()
+        self.chaser = Chaser()
+        self.all_sprites.add(self.player, self.hunter, self.chaser)
 
     def run(self):
         #bucle del juego
@@ -36,8 +37,8 @@ class Game:
     def update(self):
         #actualización del bucle del juego
         #self.player.pos.x, self.player.pos.y
-        self.enemy1.update(player_position=self.player.pos)
-        self.enemy2.update(player_position=self.player.pos)
+        self.hunter.update(player_position=self.player.pos)
+        self.chaser.update(player_position=self.player.pos, hunter_position=self.hunter.pos)
         self.player.update()
         #self.all_sprites.update(player_position=self.player.pos)
 
