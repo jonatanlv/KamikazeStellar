@@ -20,5 +20,5 @@ GRAY2 = (131, 145, 146)
 
 #### Parámetros del jugador ####
 
-ACCELERATION = 0.6
-VELMAX = 15
+ACCELERATION = 0.9
+VELMAX = 5
