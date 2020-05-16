@@ -3,6 +3,8 @@
 import pygame
 import random
 from settings import *
+from background_stars import *
+from background import *
 from sprites import *
 
 class Game:
@@ -11,15 +13,18 @@ class Game:
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption(NAME)
+        pygame.display.set_caption(GAME_NAME)
         self.clock = pygame.time.Clock()
         self.running = True
 
     def new(self):
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
+        self.stars = Background_stars()
+        self.background = Background()
         self.player = Player()
-        self.all_sprites.add(self.player)
+        #self.all_sprites.add(self.stars, self.player)
+        self.all_sprites.add(self.stars, self.background, self.player)
 
     def run(self):
         #bucle del juego
@@ -57,7 +62,7 @@ class Game:
         pygame.display.flip()
 
     def show_start_screen(self):
-        #pantalla de inicio juego
+        #pantalla de inicio juegoba
         pass
 
     def show_go_screen(self):
