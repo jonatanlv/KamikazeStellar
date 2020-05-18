@@ -16,18 +16,19 @@ class Torreta(pygame.sprite.Sprite):
         self.rect.center = pygame.mouse.get_pos()
 
         # Variables necesarias para la rotación
-        self.pivot = Vec(15, 22) # punto sobre el que gira la torreta relativo al topleft de la propia imagen
+        self.pivot = Vec(15, 22)  # punto sobre el que gira la torreta relativo al topleft de la propia imagen
         self.w, self.h = self.original_image.get_size()
-        self.angle = 0
 
     def update(self):
         pos = self.player.rect.center
+        m_pos = pygame.mouse.get_pos()
+        # Calcular el ángulo de giro
+        angle = -Vec(0, -1).angle_to(Vec(m_pos[0] - pos[0], m_pos[1] - pos[1]))
 
-        # get a rotated image
-        tr = rotation_traslation(*self.original_image.get_size(), self.pivot, self.angle)
-        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        # Hacer la rotación de la torreta
+        tr = rotation_traslation(*self.original_image.get_size(), self.pivot, angle)
+        self.image = pygame.transform.rotate(self.original_image, angle)
         self.rect = self.image.get_rect(topleft=(pos[0] + tr[0], pos[1] + tr[1]))
-        self.angle += 4
 
 
 def rotation_traslation(w: int, h: int, pivot: pygame.math.Vector2, angle: float) -> Tuple[int, int]:
