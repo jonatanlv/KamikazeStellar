@@ -18,13 +18,13 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.acc = vec(0, 0)
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
+        if keys[MOVE_LEFT]:
             self.acc.x = -ACCELERATION
-        if keys[pygame.K_RIGHT]:
+        if keys[MOVE_RIGHT]:
             self.acc.x = ACCELERATION
-        if keys[pygame.K_DOWN]:
+        if keys[MOVE_DOWN]:
             self.acc.y = ACCELERATION
-        if keys[pygame.K_UP]:
+        if keys[MOVE_UP]:
             self.acc.y = -ACCELERATION
 
         self.cond1 = (self.vel.x < - VELMAX) & (self.acc.x < 0)
