@@ -4,6 +4,8 @@ import pygame
 import random
 from settings import *
 from sprites import *
+from torreta import *
+
 
 class Game:
     def __init__(self):
@@ -18,8 +20,9 @@ class Game:
     def new(self):
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
-        self.player = Player()
-        self.all_sprites.add(self.player)
+        player = Player()
+        torreta = Torreta(player)
+        self.all_sprites.add(player, torreta)
 
     def run(self):
         #bucle del juego
