@@ -32,7 +32,7 @@ class Torreta(pygame.sprite.Sprite):
 
 
 def rotation_traslation(w: int, h: int, pivot: pygame.math.Vector2, angle: float) -> Tuple[int, int]:
-    """Devuelve la traslación necesaria a aplicar a un sprite que se ha rotado alrededor del pivot en un ángulo a\n
+    """Devuelve la traslación necesaria a aplicar a un sprite que se ha rotado alrededor del pivot en un ángulo angle\n
     w: ancho original de la imagen (antes de rotar)\n
     h: alto original de la imagen (antes de rotar)\n
     pivot: Punto sobre el que se rotará la imagen\n
