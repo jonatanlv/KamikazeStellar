@@ -3,6 +3,7 @@
 import pygame
 import random
 from settings import *
+vec = pygame.math.Vector2
 from background_stars import *
 from background import *
 from sprites import *
@@ -20,11 +21,21 @@ class Game:
     def new(self):
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
-        self.stars = Background_stars()
-        self.background = Background()
         self.player = Player()
-        #self.all_sprites.add(self.stars, self.player)
-        self.all_sprites.add(self.stars, self.background, self.player)
+        self.stars01 = Background_stars(pos = vec(-WIDTH, -HEIGHT), file = 'image/fig01.png', player_pos= self.player.pos)
+        self.stars02 = Background_stars(pos = vec(-WIDTH, 0), file = 'image/fig02.png', player_pos= self.player.pos)
+        self.stars03 = Background_stars(pos = vec(-WIDTH, HEIGHT), file = 'image/fig03.png', player_pos= self.player.pos)
+        self.stars04 = Background_stars(pos = vec(0, -HEIGHT), file = 'image/fig04.png', player_pos= self.player.pos)
+        self.stars05 = Background_stars(pos = vec(0, 0), file = 'image/fig05.png', player_pos= self.player.pos)
+        self.stars06 = Background_stars(pos = vec(0, HEIGHT), file = 'image/fig06.png', player_pos= self.player.pos)
+        self.stars07 = Background_stars(pos=vec(WIDTH, -HEIGHT), file='image/fig07.png', player_pos=self.player.pos)
+        self.stars08 = Background_stars(pos=vec(WIDTH, 0), file='image/fig08.png', player_pos=self.player.pos)
+        self.stars09 = Background_stars(pos=vec(WIDTH, HEIGHT), file='image/fig09.png', player_pos=self.player.pos)
+        #self.background = Background()
+        self.all_sprites.add(self.stars01, self.stars02,
+        self.stars03, self.stars04, self.stars05, self.stars06, self.stars07,
+        self.stars08, self.stars09, self.player)
+        #self.all_sprites.add(self.stars, self.background, self.player)
 
     def run(self):
         #bucle del juego

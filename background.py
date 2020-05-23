@@ -9,7 +9,7 @@ class Background(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load('image/fondo00.png').convert()
         self.rect = self.image.get_rect()
-        self.pos = vec(0, 0)
+        self.pos = vec(WIDTH/2, HEIGHT/2)
         self.acc = vec(0 ,0)
         self.vel = vec(0, 0)
         self.rect.center = self.pos
