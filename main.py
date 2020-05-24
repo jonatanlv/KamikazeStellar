@@ -3,9 +3,6 @@
 import pygame
 import random
 from settings import *
-vec = pygame.math.Vector2
-from background_stars import *
-from background import *
 from sprites import *
 
 class Game:
@@ -31,11 +28,11 @@ class Game:
         self.stars07 = Background_stars(pos=vec(WIDTH, -HEIGHT), file='image/fig07.png', player_pos=self.player.pos)
         self.stars08 = Background_stars(pos=vec(WIDTH, 0), file='image/fig08.png', player_pos=self.player.pos)
         self.stars09 = Background_stars(pos=vec(WIDTH, HEIGHT), file='image/fig09.png', player_pos=self.player.pos)
-        #self.background = Background()
+        self.torreta = Torreta(self.player)
         self.all_sprites.add(self.stars01, self.stars02,
         self.stars03, self.stars04, self.stars05, self.stars06, self.stars07,
-        self.stars08, self.stars09, self.player)
-        #self.all_sprites.add(self.stars, self.background, self.player)
+        self.stars08, self.stars09, self.player, self.torreta)
+
 
     def run(self):
         #bucle del juego
@@ -73,7 +70,7 @@ class Game:
         pygame.display.flip()
 
     def show_start_screen(self):
-        #pantalla de inicio juegoba
+        #pantalla de inicio juego
         pass
 
     def show_go_screen(self):
