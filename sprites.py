@@ -17,8 +17,9 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         keys = pygame.key.get_pressed()
-        acc = Vec(keys[pygame.K_RIGHT] - keys[pygame.K_LEFT],
-                  keys[pygame.K_DOWN] - keys[pygame.K_UP]) * ACCELERATION
+
+        acc = Vec(keys[MOVE_RIGHT] - keys[MOVE_LEFT],
+                  keys[MOVE_DOWN] - keys[MOVE_UP]) * ACCELERATION
         if acc.length() > ACCELERATION:
             acc *= ACCELERATION / acc.length()
 

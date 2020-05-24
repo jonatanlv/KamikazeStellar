@@ -1,6 +1,7 @@
 ##############################################
 #### Configuración y constantes del juego ####
 ##############################################
+import pygame
 
 
 #### Constantes de ventana ####
@@ -17,6 +18,12 @@ GREEN = (0,255,0)
 BLUE = (0,0,255)
 GRAY1 = (213, 219, 219)
 GRAY2 = (131, 145, 146)
+
+#### Controles del juego
+MOVE_UP = pygame.K_w
+MOVE_DOWN = pygame.K_s
+MOVE_LEFT = pygame.K_a
+MOVE_RIGHT = pygame.K_d
 
 #### Parámetros del jugador ####
 
