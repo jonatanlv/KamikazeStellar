@@ -1,56 +1,58 @@
 # Clase para los sprites
 import pygame
-from settings import *
+
+from settings import RED, HEIGHT, WIDTH
+from torreta import rotation_traslation
+
 vec = pygame.math.Vector2
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((30, 40))
-        self.image.fill(GRAY2)
+        self.original_image = pygame.image.load("imagenes/test_colision1.png").convert_alpha()
+        self.image = self.original_image
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH/2, 2*HEIGHT/3)
-        self.pos = vec(WIDTH/2, 2*HEIGHT/3)
-        self.vel = vec(0, 0)
-        self.acc = vec(0, 0)
+        self.angle = 0
+        self.original_anchors = {
+            "topleft": vec(10, 10),
+            "topright": vec(90, 10),
+            "bottomleft": vec(10, 90),
+            "bottomright": vec(90, 90)
+        }
+        self.anchors = self.original_anchors.copy()
+        self.pivot = vec(20, 30)
+        self.pos = vec(0, 0)
+        pygame.draw.circle(self.original_image, RED, (int(self.pivot.x), int(self.pivot.y)), 3, 2)
 
     def update(self):
-        self.acc = vec(0, 0)
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.acc.x = -ACCELERATION
-        if keys[pygame.K_RIGHT]:
-            self.acc.x = ACCELERATION
-        if keys[pygame.K_DOWN]:
-            self.acc.y = ACCELERATION
-        if keys[pygame.K_UP]:
-            self.acc.y = -ACCELERATION
+        buttons = pygame.mouse.get_pressed()
+        if buttons[0]:
+            self.angle += 5
+        if buttons[2]:
+            self.angle -= 5
+        self.angle %= 360
+        size = self.original_image.get_size()
+        tr = rotation_traslation(size[0], size[1], self.pivot, self.angle)
+        for k, v in self.original_anchors.items():
+            v1 = v - self.pivot
+            v2 = v1.rotate(-self.angle)
+            self.anchors[k] = vec(v2.x, v2.y)
 
-        self.cond1 = (self.vel.x < - VELMAX) & (self.acc.x < 0)
-        self.cond2 = (self.vel.x > VELMAX) & (self.acc.x > 0)
-        self.cond3 = (self.vel.y < - VELMAX) & (self.acc.y < 0)
-        self.cond4 = (self.vel.y > VELMAX) & (self.acc.y > 0)
-        if ( self.cond1 or self.cond2 or self.cond3 or self.cond4):
-            self.acc = vec(0, 0)
-            self.vel += self.acc
-            self.pos += self.vel + 0.5 * self.acc
-        else:
-             self.vel += self.acc
-             self.pos += self.vel + 0.5 * self.acc
+        self.pos = pygame.mouse.get_pos()
+
+        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.rect = self.image.get_rect(topleft=(self.pos[0] + tr[0], self.pos[1] + tr[1]))
 
 
-        if self.pos.x > WIDTH:
-            self.pos.x = 0
+class Enemy(Player):
+    def update(self):
+        self.angle += 0.2
+        self.angle %= 360
 
-        if self.pos.x < 0:
-            self.pos.x = WIDTH
+        self.pos = (WIDTH / 2, HEIGHT / 2)
+        size = self.original_image.get_size()
 
-        if self.pos.y > HEIGHT:
-            self.pos.y = 0
-
-        if self.pos.y < 0:
-            self.pos.y = HEIGHT
-
-
-        self.rect.center = self.pos
+        tr = rotation_traslation(size[0], size[1], self.pivot, self.angle)
+        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.rect = self.image.get_rect(topleft=(self.pos[0] + tr[0], self.pos[1] + tr[1]))

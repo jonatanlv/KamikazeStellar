@@ -4,26 +4,29 @@ from typing import Tuple
 import pygame
 from pygame.math import Vector2 as Vec
 
+from settings import HEIGHT, WIDTH
+
 
 class Torreta(pygame.sprite.Sprite):
-    def __init__(self, player):
+    def __init__(self, player, anchor=None):
         super().__init__()
         self.player = player
-        self.pos = player.pos
         self.original_image = pygame.image.load("imagenes/torreta.png")
         self.image = self.original_image
         self.rect = self.image.get_rect()
         self.rect.center = pygame.mouse.get_pos()
+        self.anchor = anchor
 
         # Variables necesarias para la rotación
         self.pivot = Vec(15, 22)  # punto sobre el que gira la torreta relativo al topleft de la propia imagen
         self.w, self.h = self.original_image.get_size()
 
     def update(self):
-        pos = self.player.rect.center
-        m_pos = pygame.mouse.get_pos()
+        pos = self.player.anchors.get(self.anchor) + self.player.pos
+        # aim_pos = pygame.mouse.get_pos()
+        aim_pos = (WIDTH / 2, HEIGHT / 2)
         # Calcular el ángulo de giro
-        angle = -Vec(0, -1).angle_to(Vec(m_pos[0] - pos[0], m_pos[1] - pos[1]))
+        angle = -Vec(0, -1).angle_to(Vec(aim_pos[0] - pos[0], aim_pos[1] - pos[1]))
 
         # Hacer la rotación de la torreta
         tr = rotation_traslation(*self.original_image.get_size(), self.pivot, angle)
@@ -33,6 +36,7 @@ class Torreta(pygame.sprite.Sprite):
 
 def rotation_traslation(w: int, h: int, pivot: pygame.math.Vector2, angle: float) -> Tuple[int, int]:
     """Devuelve la traslación necesaria a aplicar a un sprite que se ha rotado alrededor del pivot en un ángulo angle\n
+    Es decir, devuelve el vector que va desde el pivot en la figura rotada hasta la esquina superior izquierda del AABB\n
     w: ancho original de la imagen (antes de rotar)\n
     h: alto original de la imagen (antes de rotar)\n
     pivot: Punto sobre el que se rotará la imagen\n
