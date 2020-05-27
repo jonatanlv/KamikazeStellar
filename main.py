@@ -4,7 +4,11 @@ import pygame
 import random
 from settings import *
 from sprites import *
-from background_stars import *
+#from background_stars import *
+#from background_stars02 import *
+#from background_stars03 import *
+#from background_stars04 import *
+from background_stars01 import *
 from background_stars02 import *
 from background_stars03 import *
 from background_stars04 import *
@@ -24,12 +28,13 @@ class Game:
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
         self.player = Player()
-        self.stars01 = Background_stars(pos = vec(0, 0), file = 'image/fondo.png', player_pos= self.player.pos)
-        self.stars02 = Background_stars02(pos=vec(0, 0), file='image/fondo.png', player_pos=self.player.pos)
-        self.stars03 = Background_stars03(pos=vec(5*WIDTH, 5*WIDTH), file='image/fondo.png', player_pos=self.player.pos)
-        self.stars04 = Background_stars04(pos=vec(5*WIDTH, 5*WIDTH), file='image/fondo.png', player_pos=self.player.pos)
+        self.stars01 = Background_stars01(file = 'image/fondo00.png', player_pos= self.player.pos)
+        self.stars02 = Background_stars02(file ='image/fondo00.png', player_pos=self.player.pos)
+        self.stars03 = Background_stars03(file ='image/fondo00.png', player_pos=self.player.pos)
+        self.stars04 = Background_stars04(file ='image/fondo00.png', player_pos=self.player.pos)
         self.torreta = Torreta(self.player)
-        self.all_sprites.add(self.stars03, self.stars04, self.stars02, self.stars01, self.player, self.torreta)
+        self.all_sprites.add(self.stars01, self.stars02, self.stars03, self.stars04, self.player, self.torreta)
+
 
 
     def run(self):
