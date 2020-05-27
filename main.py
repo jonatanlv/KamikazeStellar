@@ -4,6 +4,11 @@ import pygame
 import random
 from settings import *
 from sprites import *
+from background_stars import *
+from background_stars02 import *
+from background_stars03 import *
+from background_stars04 import *
+from torreta import *
 
 class Game:
     def __init__(self):
@@ -19,19 +24,12 @@ class Game:
         #nuevo o reiniciar juego
         self.all_sprites = pygame.sprite.Group()
         self.player = Player()
-        self.stars01 = Background_stars(pos = vec(-WIDTH, -HEIGHT), file = 'image/fig01.png', player_pos= self.player.pos)
-        self.stars02 = Background_stars(pos = vec(-WIDTH, 0), file = 'image/fig02.png', player_pos= self.player.pos)
-        self.stars03 = Background_stars(pos = vec(-WIDTH, HEIGHT), file = 'image/fig03.png', player_pos= self.player.pos)
-        self.stars04 = Background_stars(pos = vec(0, -HEIGHT), file = 'image/fig04.png', player_pos= self.player.pos)
-        self.stars05 = Background_stars(pos = vec(0, 0), file = 'image/fig05.png', player_pos= self.player.pos)
-        self.stars06 = Background_stars(pos = vec(0, HEIGHT), file = 'image/fig06.png', player_pos= self.player.pos)
-        self.stars07 = Background_stars(pos=vec(WIDTH, -HEIGHT), file='image/fig07.png', player_pos=self.player.pos)
-        self.stars08 = Background_stars(pos=vec(WIDTH, 0), file='image/fig08.png', player_pos=self.player.pos)
-        self.stars09 = Background_stars(pos=vec(WIDTH, HEIGHT), file='image/fig09.png', player_pos=self.player.pos)
+        self.stars01 = Background_stars(pos = vec(0, 0), file = 'image/fondo.png', player_pos= self.player.pos)
+        self.stars02 = Background_stars02(pos=vec(0, 0), file='image/fondo.png', player_pos=self.player.pos)
+        self.stars03 = Background_stars03(pos=vec(5*WIDTH, 5*WIDTH), file='image/fondo.png', player_pos=self.player.pos)
+        self.stars04 = Background_stars04(pos=vec(5*WIDTH, 5*WIDTH), file='image/fondo.png', player_pos=self.player.pos)
         self.torreta = Torreta(self.player)
-        self.all_sprites.add(self.stars01, self.stars02,
-        self.stars03, self.stars04, self.stars05, self.stars06, self.stars07,
-        self.stars08, self.stars09, self.player, self.torreta)
+        self.all_sprites.add(self.stars03, self.stars04, self.stars02, self.stars01, self.player, self.torreta)
 
 
     def run(self):

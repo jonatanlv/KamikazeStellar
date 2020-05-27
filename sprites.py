@@ -10,10 +10,10 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((30, 40))
         self.image.fill(GRAY2)
         self.rect = self.image.get_rect()
-        self.pos = vec(WIDTH / 2, HEIGHT / 2)
+        self.pos = vec(0, 0)
         self.vel = vec(0 ,0)
         self.acc = vec(0, 0)
-        self.rect.center = self.pos
+        self.rect.center = vec(WIDTH / 2, HEIGHT / 2)
 
 
 
@@ -41,26 +41,4 @@ class Player(pygame.sprite.Sprite):
         else:
              self.vel += self.acc
              self.pos += self.vel + 0.5 * self.acc
-
-
-        # if self.pos.x > WIDTH/2:
-        #     self.rect.center = self.pos
-        #     self.pos.x = WIDTH/2
-        #
-        #
-        # if self.pos.x < -WIDTH/2:
-        #     self.rect.center = self.pos
-        #     self.pos.x = -WIDTH/2
-        #
-        #
-        # if self.pos.y > 3*HEIGHT/2:
-        #     self.rect.center = self.pos
-        #     self.pos.y = 3*HEIGHT/2
-        #
-        #
-        # if self.pos.y < -HEIGHT/2:
-        #     self.rect.center = self.pos
-        #     self.pos.y = -HEIGHT / 2
-
-
 
