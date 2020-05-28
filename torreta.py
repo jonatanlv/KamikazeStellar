@@ -10,7 +10,7 @@ class Torreta(pygame.sprite.Sprite):
         super().__init__()
         self.player = player
         self.pos = player.pos
-        self.original_image = pygame.image.load("imagenes/torreta.png")
+        self.original_image = pygame.image.load("image/torreta.png")
         self.image = self.original_image
         self.rect = self.image.get_rect()
         self.rect.center = pygame.mouse.get_pos()
