@@ -1,31 +1,29 @@
 # Importamos librerias
-
-import pygame
-import random
-from settings import *
 from sprites import *
-from torreta import *
+from torreta import Torreta
 
 
 class Game:
+    all_sprites = pygame.sprite.Group()
+    playing = True
+    running = True
+    clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
     def __init__(self):
-        #inicializar ventana y juego
+        # inicializar ventana y juego
         pygame.init()
         pygame.mixer.init()
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption(NAME)
-        self.clock = pygame.time.Clock()
-        self.running = True
 
     def new(self):
-        #nuevo o reiniciar juego
-        self.all_sprites = pygame.sprite.Group()
-        player = Player()
-        torreta = Torreta(player)
+        # nuevo o reiniciar juego
+        player = Player(self)
+        torreta = Torreta(self, player)
         self.all_sprites.add(player, torreta)
 
     def run(self):
-        #bucle del juego
+        # bucle del juego
         self.playing = True
         while self.playing:
             self.clock.tick(FPS)
@@ -34,12 +32,11 @@ class Game:
             self.draw()
 
     def update(self):
-        #actualización del bucle del juego
+        # actualización del bucle del juego
         self.all_sprites.update()
 
-
     def events(self):
-        #eventos del bucle del juego
+        # eventos del bucle del juego
         for event in pygame.event.get():
             # Chequeamos si el jugador ha salido del juego
             # actualizamos la variable self.playing para salir del
@@ -47,11 +44,11 @@ class Game:
             # salir del juego.
             if event.type == pygame.QUIT:
                 if self.playing:
-                    self.playing =False
+                    self.playing = False
                 self.running = False
 
     def draw(self):
-        #dibuja elementos en el bucle del juego
+        # dibuja elementos en el bucle del juego
         self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
         # pygame.display.flip() actualiza la pantalla completa
@@ -60,11 +57,11 @@ class Game:
         pygame.display.flip()
 
     def show_start_screen(self):
-        #pantalla de inicio juego
+        # pantalla de inicio juego
         pass
 
     def show_go_screen(self):
-        #pantalla fin/continue juego
+        # pantalla fin/continue juego
         pass
 
 

@@ -15,7 +15,8 @@ WHITE = (255,255,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
 GREEN = (0,255,0)
-BLUE = (0,0,255)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
 GRAY1 = (213, 219, 219)
 GRAY2 = (131, 145, 146)
 
@@ -24,6 +25,7 @@ MOVE_UP = pygame.K_w
 MOVE_DOWN = pygame.K_s
 MOVE_LEFT = pygame.K_a
 MOVE_RIGHT = pygame.K_d
+SHOOT = 0
 
 #### Parámetros del jugador ####
 

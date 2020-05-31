@@ -1,13 +1,13 @@
 # Clase para los sprites
-import pygame
 from pygame.math import Vector2 as Vec
 
 from settings import *
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, game):
         super().__init__()
+        self.game = game
         self.image = pygame.Surface((30, 40))
         self.image.fill(pygame.color.THECOLORS["darkslategray4"])
         self.rect = self.image.get_rect()
