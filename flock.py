@@ -63,7 +63,7 @@ class FlockElement:
 class Flock(Group):
     """Calcula la aceleración de cada elemento y la aplica a cada uno de ellos\n
     Se presupone que cada elemento tendrá un vector pos: Vector2 y vel: Vector2, representando, respectivamente la posición y la velocidad.\n
-    La aceleración es la suma de 3 componentes tal y como se pueden ver en este paper: https://www.red3d.com/cwr/boids/https://www.red3d.com/cwr/boids/
+    La aceleración es la suma de 3 componentes tal y como se pueden ver en este paper: https://www.red3d.com/cwr/boids
     """
 
     def update_flock(self):
