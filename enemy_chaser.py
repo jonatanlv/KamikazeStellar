@@ -1,13 +1,16 @@
 # Clase para los sprites
-import pygame
 import random
+
+import pygame
+
 from settings import *
+
 vec = pygame.math.Vector2
 
 
 class Chaser(pygame.sprite.Sprite):
     def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         self.image = pygame.Surface((SIZE_CHASER, SIZE_CHASER))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()

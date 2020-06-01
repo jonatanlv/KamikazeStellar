@@ -1,6 +1,8 @@
 # Clase para los sprites
 import pygame
+
 from settings import *
+
 vec = pygame.math.Vector2
 
 
@@ -26,12 +28,14 @@ class Player(pygame.sprite.Sprite):
             self.acc.y = ACCELERATION_PLAYER
         if keys[pygame.K_UP]:
             self.acc.y = -ACCELERATION_PLAYER
+        if keys[pygame.K_l]:
+            self.vel.update((0, 0))
 
         self.cond1 = (self.vel.x < - VEL_MAX_PLAYER) & (self.acc.x < 0)
         self.cond2 = (self.vel.x > VEL_MAX_PLAYER) & (self.acc.x > 0)
         self.cond3 = (self.vel.y < - VEL_MAX_PLAYER) & (self.acc.y < 0)
         self.cond4 = (self.vel.y > VEL_MAX_PLAYER) & (self.acc.y > 0)
-        if ( self.cond1 or self.cond2 or self.cond3 or self.cond4):
+        if (self.cond1 or self.cond2 or self.cond3 or self.cond4):
             self.acc = vec(0, 0)
             self.vel += self.acc
             self.pos += self.vel + 0.5 * self.acc
